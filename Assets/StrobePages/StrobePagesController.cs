@@ -53,6 +53,9 @@ public sealed partial class StrobePagesController : MonoBehaviour
         public readonly int FlipTex = Shader.PropertyToID("_FlipTex");
         public readonly int Progress = Shader.PropertyToID("_Progress");
         public readonly int Blur = Shader.PropertyToID("_Blur");
+        public readonly int SampleCount = Shader.PropertyToID("_SampleCount");
+        public readonly int ShadeWidth = Shader.PropertyToID("_ShadeWidth");
+        public readonly int ShadeStrength = Shader.PropertyToID("_ShadeStrength");
 
     }
 
@@ -118,6 +121,9 @@ public sealed partial class StrobePagesController : MonoBehaviour
 
         _material.SetFloat(_token.Progress, Progress);
         _material.SetFloat(_token.Blur, Blur);
+        _material.SetInt(_token.SampleCount, Mathf.Clamp(SampleCount, 1, 32));
+        _material.SetFloat(_token.ShadeWidth, Mathf.Max(0.0001f, ShadeWidth));
+        _material.SetFloat(_token.ShadeStrength, Mathf.Max(0, ShadeStrength));
 
         return _material;
     }
