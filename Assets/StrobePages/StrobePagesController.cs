@@ -49,8 +49,6 @@ public sealed partial class StrobePagesController : MonoBehaviour
 
     sealed class ShaderToken
     {
-        public readonly int Scale = Shader.PropertyToID("_Scale");
-
         public readonly int BaseTex = Shader.PropertyToID("_BaseTex");
         public readonly int FlipTex = Shader.PropertyToID("_FlipTex");
         public readonly int Progress = Shader.PropertyToID("_Progress");
@@ -115,8 +113,6 @@ public sealed partial class StrobePagesController : MonoBehaviour
             _token = new ShaderToken();
             _material = CoreUtils.CreateEngineMaterial(Shader);
         }
-
-        _material.SetFloat(_token.Scale, Mathf.Max(0.1f, PageScale));
 
         _material.SetTexture(_token.BaseTex, _pageBase.rt);
         _material.SetTexture(_token.FlipTex, _pageFlip.rt);

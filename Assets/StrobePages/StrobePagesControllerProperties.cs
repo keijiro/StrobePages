@@ -14,11 +14,6 @@ public sealed partial class StrobePagesController
     [field:SerializeField, Range(0, 0.5f)]
     public float MotionBlur { get; set; } = 0.07f;
 
-    [field:SerializeField, Range(1, 5)]
-    [field:FormerlySerializedAs("BackgroundScale")]
-    [field:FormerlySerializedAs("ForegroundScale")]
-    public float PageScale { get; set; } = 1;
-
     [field:SerializeField, HideInInspector]
     public Shader Shader { get; set; }
 

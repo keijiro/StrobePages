@@ -24,7 +24,6 @@ Shader "Hidden/StrobePages"
 
             float _Progress;
             float _Blur;
-            float _Scale;
 
             float _Aspect;
 
@@ -39,41 +38,21 @@ Shader "Hidden/StrobePages"
                 return y1 > 0 ? c1 : c2;
             }
 
-            float4 SampleFlipPageLayer(TEXTURE2D_PARAM(baseTex, baseSampler),
-                                       TEXTURE2D_PARAM(flipTex, flipSampler),
-                                       float2 uv, float progress, float blur,
-                                       float aspect)
-            {
-                const uint SampleCount = 12;
-
-                float3 acc = 0;
-                if (blur > 0)
-                {
-                    float t0 = progress - blur / 2;
-                    float dt = blur / SampleCount;
-                    for (uint i = 0; i < SampleCount; i++)
-                        acc += SampleFlipPage(TEXTURE2D_ARGS(baseTex, baseSampler),
-                                              TEXTURE2D_ARGS(flipTex, flipSampler), uv, t0 + dt * i);
-                    acc /= SampleCount;
-                }
-                else
-                {
-                    acc = SampleFlipPage(TEXTURE2D_ARGS(baseTex, baseSampler),
-                                         TEXTURE2D_ARGS(flipTex, flipSampler), uv, progress);
-                }
-
-                return float4(acc, 1);
-            }
-
             float4 Frag(Varyings input) : SV_Target
             {
                 float2 uv = input.texcoord;
 
-                float2 uvPage = (uv - 0.5) / _Scale + 0.5;
+                float2 uvPage = uv;
+                const uint SampleCount = 12;
 
-                return SampleFlipPageLayer(TEXTURE2D_ARGS(_BaseTex, sampler_BaseTex),
-                                           TEXTURE2D_ARGS(_FlipTex, sampler_FlipTex),
-                                           uvPage, _Progress, _Blur, _Aspect);
+                float3 acc = 0;
+                float t0 = _Progress - _Blur / 2;
+                float dt = _Blur / SampleCount;
+                for (uint i = 0; i < SampleCount; i++)
+                    acc += SampleFlipPage(TEXTURE2D_ARGS(_BaseTex, sampler_BaseTex),
+                                          TEXTURE2D_ARGS(_FlipTex, sampler_FlipTex), uvPage, t0 + dt * i);
+
+                return float4(acc / SampleCount, 1);
             }
             ENDHLSL
         }
