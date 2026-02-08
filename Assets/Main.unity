@@ -747,7 +747,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1411473415}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6ed996ce7adfd4a70934ec68ac3c5587, type: 3}
   m_Name: 
@@ -755,15 +755,7 @@ MonoBehaviour:
   <PageInterval>k__BackingField: 0.1
   <EaseOutPower>k__BackingField: 2
   <MotionBlur>k__BackingField: 0.07
-  <BackgroundScale>k__BackingField: 3
-  <ForegroundScale>k__BackingField: 1
-  <BackgroundOcclusionStrength>k__BackingField: 0.85
-  <BackgroundOcclusionSize>k__BackingField: 0.3333333
-  <BackgroundOcclusionExtent>k__BackingField: 0.15
-  <ForegroundOcclusionStrength>k__BackingField: 0
-  <ForegroundOcclusionSize>k__BackingField: 0.3333333
-  <ForegroundOcclusionExtent>k__BackingField: 0.15
-  <BackgroundColor>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
+  <PageScale>k__BackingField: 1
   <Shader>k__BackingField: {fileID: 4800000, guid: 2ede87297c3784dcfa985d5ed1496e87, type: 3}
 --- !u!1 &1602446955
 GameObject:
