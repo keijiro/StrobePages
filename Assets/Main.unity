@@ -753,8 +753,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StrobePagesController
   <PageInterval>k__BackingField: 0.1
-  <EaseOutPower>k__BackingField: 2
-  <MotionBlur>k__BackingField: 0.07
+  <EaseOutPower>k__BackingField: 1
+  <MotionBlur>k__BackingField: 0.132
+  <SampleCount>k__BackingField: 12
+  <ShadeWidth>k__BackingField: 0.3
+  <ShadeStrength>k__BackingField: 4
   <Shader>k__BackingField: {fileID: 4800000, guid: 2ede87297c3784dcfa985d5ed1496e87, type: 3}
 --- !u!1 &1602446955
 GameObject:
