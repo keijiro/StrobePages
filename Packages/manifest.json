@@ -1,8 +1,12 @@
 {
   "dependencies": {
     "com.unity.render-pipelines.universal": "17.3.0",
-    "jp.keijiro.klutter-tools": "2.4.4",
+    "jp.keijiro.cmu-mocap": "1.0.0",
+    "jp.keijiro.klak.motion": "1.1.1",
+    "jp.keijiro.klutter-tools": "2.6.0",
+    "jp.keijiro.neolowman": "1.0.0",
     "com.unity.modules.adaptiveperformance": "1.0.0",
+    "com.unity.modules.animation": "1.0.0",
     "com.unity.modules.vectorgraphics": "1.0.0"
   },
   "scopedRegistries": [
