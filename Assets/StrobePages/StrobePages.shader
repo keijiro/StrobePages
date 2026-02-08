@@ -25,7 +25,7 @@ float4 Frag(Varyings input) : SV_Target
     int sampleCount = min(max(_SampleCount, 1), MaxSamples);
 
     float3 acc = 0;
-    float t0 = _Progress - _Blur / 2;
+    float t0 = _Progress * (1 + _Blur) - _Blur;
     float dt = _Blur / sampleCount;
 
     [loop]
