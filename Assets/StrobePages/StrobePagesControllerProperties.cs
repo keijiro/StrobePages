@@ -43,7 +43,5 @@ public sealed partial class StrobePagesController
     [field:SerializeField, HideInInspector]
     public Shader Shader { get; set; }
 
-    public Material Material => UpdateMaterial();
-
     #endregion
 }
