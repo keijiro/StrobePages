@@ -54,7 +54,6 @@ public sealed partial class StrobePagesController : MonoBehaviour
         public readonly int Progress = Shader.PropertyToID("_Progress");
         public readonly int Blur = Shader.PropertyToID("_Blur");
 
-        public readonly int Aspect = Shader.PropertyToID("_Aspect");
     }
 
     ShaderToken _token;
@@ -119,8 +118,6 @@ public sealed partial class StrobePagesController : MonoBehaviour
 
         _material.SetFloat(_token.Progress, Progress);
         _material.SetFloat(_token.Blur, Blur);
-
-        _material.SetFloat(_token.Aspect, aspect);
 
         return _material;
     }
