@@ -320,6 +320,10 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 4285488b509f1437abe502e5754ceb3b, type: 2}
+    - target: {fileID: 13700000, guid: a2e23193c976434eb66491671c592689, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 1adea63e60e504f54a634756a5a32b33, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -755,6 +759,7 @@ MonoBehaviour:
   <PageInterval>k__BackingField: 0.1
   <PageStiffness>k__BackingField: 2
   <MotionBlur>k__BackingField: 0.132
+  <Opacity>k__BackingField: 1
   <SampleCount>k__BackingField: 12
   <ShadeWidth>k__BackingField: 0.3
   <ShadeStrength>k__BackingField: 4

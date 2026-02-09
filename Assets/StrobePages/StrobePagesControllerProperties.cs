@@ -18,7 +18,7 @@ public sealed partial class StrobePagesController
     [field:SerializeField, Range(0, 1)]
     public float Opacity { get; set; } = 1;
 
-    [field:SerializeField, Range(1, 32)]
+    [field:SerializeField, Range(1, 24)]
     public int SampleCount { get; set; } = 12;
 
     [field:SerializeField, Range(0.01f, 1)]
