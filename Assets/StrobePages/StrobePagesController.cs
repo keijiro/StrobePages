@@ -27,20 +27,24 @@ public sealed partial class StrobePagesController : MonoBehaviour
     void Update()
     {
         var pageInterval = Mathf.Max(0.01f, PageInterval);
-        var time = Time.timeAsDouble;
-        var pageIndex = (int)(time / pageInterval);
+        _phase += Time.deltaTime / pageInterval;
 
-        CaptureThisFrame = pageIndex != _lastCapturedPage;
-        if (CaptureThisFrame) _lastCapturedPage = pageIndex;
+        var pageStep = Mathf.FloorToInt(_phase);
+        if (pageStep > 0)
+        {
+            _phase -= pageStep;
+            CaptureThisFrame = true;
 
-        if (CaptureThisFrame && _pageBase != null && _pageFlip != null)
-            (_pageBase, _pageFlip) = (_pageFlip, _pageBase);
+            if (_pageBase != null && _pageFlip != null && (pageStep & 1) == 1)
+                (_pageBase, _pageFlip) = (_pageFlip, _pageBase);
+        }
+        else
+        {
+            CaptureThisFrame = false;
+        }
 
-        var t = time / pageInterval;
-        var p = t - System.Math.Floor(t);
-
-        var eased = 1 - System.Math.Pow(1 - p, EaseOutPower);
-        var ddt = EaseOutPower * System.Math.Pow(1 - p, EaseOutPower - 1);
+        var eased = 1 - Mathf.Pow(1 - _phase, EaseOutPower);
+        var ddt = EaseOutPower * Mathf.Pow(1 - _phase, EaseOutPower - 1);
 
         Progress = (float)eased;
         Blur = MotionBlur * (float)ddt;
@@ -54,16 +58,14 @@ public sealed partial class StrobePagesController : MonoBehaviour
     RTHandle _pageBase;
     RTHandle _pageFlip;
     GraphicsFormat _bufferFormat;
-    int _lastCapturedPage = int.MinValue;
     bool _needsInit = true;
+    float _phase;
 
     public bool CaptureThisFrame { get; private set; }
     public float Progress { get; private set; }
     public float Blur { get; private set; }
 
     public RTHandle CaptureTarget => CaptureThisFrame ? _pageFlip : null;
-    public RTHandle PageBase => _pageBase;
-    public RTHandle PageFlip => _pageFlip;
 
     public bool PrepareBuffers(GraphicsFormat format)
     {
@@ -84,8 +86,8 @@ public sealed partial class StrobePagesController : MonoBehaviour
 
     public void ResetState()
     {
-        _lastCapturedPage = int.MinValue;
         _needsInit = true;
+        _phase = 0;
     }
 
     public RTHandle ConsumeInitTarget()
