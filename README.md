@@ -1,5 +1,7 @@
 # StrobePages
 
+![GIF](https://github.com/user-attachments/assets/c94f2e16-91ca-4fcd-a394-74766db4e27b)
+
 **StrobePages** is a Unity URP renderer feature that creates a flipbook-style
 page-turning post-processing effect. It captures frames at a fixed interval
 and animates them as if a page is flipping over the previous frame.
@@ -23,7 +25,9 @@ registry to your project.
 1. Add **StrobePagesRendererFeature** to your URP Renderer Asset.
 2. Add **StrobePagesController** to a Camera.
 
-# Parameters
+# Properties
+
+<img width="299" height="190" alt="Inspector" src="https://github.com/user-attachments/assets/1aa1a47b-f5bb-4fef-a5f2-11d7bb680988" />
 
 **Page Interval** controls how often a new page is captured. Shorter values
 flip more frequently.
