@@ -24,9 +24,6 @@ public sealed partial class StrobePagesController
     [field:SerializeField, Range(0, 8)]
     public float ShadeStrength { get; set; } = 4;
 
-    [field:SerializeField, HideInInspector]
-    public Shader Shader { get; set; }
-
     #endregion
 }
 

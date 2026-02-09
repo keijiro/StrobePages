@@ -12,6 +12,9 @@ public sealed partial class StrobePagesController : MonoBehaviour
 {
     #region MonoBehaviour implementation
 
+    [SerializeField, HideInInspector]
+    Shader _shader = null;
+
     void OnDestroy()
     {
         CoreUtils.Destroy(_material);
@@ -42,9 +45,6 @@ public sealed partial class StrobePagesController : MonoBehaviour
         {
             CaptureThisFrame = false;
         }
-
-        Progress = _phase;
-        Blur = MotionBlur;
     }
 
     #endregion
@@ -59,8 +59,6 @@ public sealed partial class StrobePagesController : MonoBehaviour
     float _phase;
 
     public bool CaptureThisFrame { get; private set; }
-    public float Progress { get; private set; }
-    public float Blur { get; private set; }
 
     public RTHandle CaptureTarget => CaptureThisFrame ? _pageFlip : null;
 
@@ -96,13 +94,13 @@ public sealed partial class StrobePagesController : MonoBehaviour
 
     public Material UpdateMaterial(float aspect)
     {
-        if (_material == null) _material = CoreUtils.CreateEngineMaterial(Shader);
+        if (_material == null) _material = CoreUtils.CreateEngineMaterial(_shader);
 
         _material.SetTexture(ShaderIDs.BaseTex, _pageBase.rt);
         _material.SetTexture(ShaderIDs.FlipTex, _pageFlip.rt);
 
-        _material.SetFloat(ShaderIDs.Progress, Progress);
-        _material.SetFloat(ShaderIDs.Blur, Blur);
+        _material.SetFloat(ShaderIDs.Progress, _phase);
+        _material.SetFloat(ShaderIDs.Blur, MotionBlur / 24 / PageInterval);
         _material.SetInt(ShaderIDs.SampleCount, Mathf.Clamp(SampleCount, 1, 32));
         _material.SetFloat(ShaderIDs.ShadeWidth, Mathf.Max(0.0001f, ShadeWidth));
         _material.SetFloat(ShaderIDs.ShadeStrength, Mathf.Max(0, ShadeStrength));

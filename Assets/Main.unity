@@ -758,7 +758,7 @@ MonoBehaviour:
   <SampleCount>k__BackingField: 12
   <ShadeWidth>k__BackingField: 0.3
   <ShadeStrength>k__BackingField: 4
-  <Shader>k__BackingField: {fileID: 4800000, guid: 2ede87297c3784dcfa985d5ed1496e87, type: 3}
+  _shader: {fileID: 4800000, guid: 2ede87297c3784dcfa985d5ed1496e87, type: 3}
 --- !u!1 &1602446955
 GameObject:
   m_ObjectHideFlags: 0
