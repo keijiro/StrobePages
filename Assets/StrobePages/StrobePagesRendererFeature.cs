@@ -1,5 +1,7 @@
 using UnityEngine.Rendering.Universal;
 
+namespace StrobePages {
+
 sealed class StrobePagesRendererFeature : ScriptableRendererFeature
 {
     StrobePagesPass _pass;
@@ -8,6 +10,9 @@ sealed class StrobePagesRendererFeature : ScriptableRendererFeature
       => _pass = new StrobePagesPass
            { renderPassEvent = RenderPassEvent.BeforeRenderingPostProcessing };
 
-    public override void AddRenderPasses(ScriptableRenderer renderer, ref RenderingData renderingData)
+    public override void AddRenderPasses
+      (ScriptableRenderer renderer, ref RenderingData renderingData)
       => renderer.EnqueuePass(_pass);
 }
+
+} // namespace StrobePages

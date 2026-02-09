@@ -1,10 +1,13 @@
 using UnityEngine;
 using UnityEngine.Experimental.Rendering;
 using UnityEngine.Rendering;
+using ShaderIDs = StrobePages.ShaderPropertyIDs;
+
+namespace StrobePages {
 
 [ExecuteInEditMode]
 [RequireComponent(typeof(Camera))]
-[AddComponentMenu("StrobePages/Strobe Pages")]
+[AddComponentMenu("StrobePages")]
 public sealed partial class StrobePagesController : MonoBehaviour
 {
     #region MonoBehaviour implementation
@@ -47,19 +50,6 @@ public sealed partial class StrobePagesController : MonoBehaviour
 
     #region Controller implementation
 
-    sealed class ShaderToken
-    {
-        public readonly int BaseTex = Shader.PropertyToID("_BaseTex");
-        public readonly int FlipTex = Shader.PropertyToID("_FlipTex");
-        public readonly int Progress = Shader.PropertyToID("_Progress");
-        public readonly int Blur = Shader.PropertyToID("_Blur");
-        public readonly int SampleCount = Shader.PropertyToID("_SampleCount");
-        public readonly int ShadeWidth = Shader.PropertyToID("_ShadeWidth");
-        public readonly int ShadeStrength = Shader.PropertyToID("_ShadeStrength");
-
-    }
-
-    ShaderToken _token;
     Material _material;
     RTHandle _pageBase;
     RTHandle _pageFlip;
@@ -107,26 +97,24 @@ public sealed partial class StrobePagesController : MonoBehaviour
 
     public Material UpdateMaterial(float aspect)
     {
-        if (Shader == null) Shader = Shader.Find("Hidden/StrobePages");
-        if (Shader == null) return null;
-
-        if (_material == null || _material.shader != Shader)
+        if (_material == null)
         {
-            _token = new ShaderToken();
             _material = CoreUtils.CreateEngineMaterial(Shader);
         }
 
-        _material.SetTexture(_token.BaseTex, _pageBase.rt);
-        _material.SetTexture(_token.FlipTex, _pageFlip.rt);
+        _material.SetTexture(ShaderIDs.BaseTex, _pageBase.rt);
+        _material.SetTexture(ShaderIDs.FlipTex, _pageFlip.rt);
 
-        _material.SetFloat(_token.Progress, Progress);
-        _material.SetFloat(_token.Blur, Blur);
-        _material.SetInt(_token.SampleCount, Mathf.Clamp(SampleCount, 1, 32));
-        _material.SetFloat(_token.ShadeWidth, Mathf.Max(0.0001f, ShadeWidth));
-        _material.SetFloat(_token.ShadeStrength, Mathf.Max(0, ShadeStrength));
+        _material.SetFloat(ShaderIDs.Progress, Progress);
+        _material.SetFloat(ShaderIDs.Blur, Blur);
+        _material.SetInt(ShaderIDs.SampleCount, Mathf.Clamp(SampleCount, 1, 32));
+        _material.SetFloat(ShaderIDs.ShadeWidth, Mathf.Max(0.0001f, ShadeWidth));
+        _material.SetFloat(ShaderIDs.ShadeStrength, Mathf.Max(0, ShadeStrength));
 
         return _material;
     }
 
     #endregion
 }
+
+} // namespace StrobePages

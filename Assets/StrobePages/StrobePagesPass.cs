@@ -1,9 +1,10 @@
 using UnityEngine;
-using UnityEngine.Experimental.Rendering;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.RenderGraphModule;
 using UnityEngine.Rendering.RenderGraphModule.Util;
 using UnityEngine.Rendering.Universal;
+
+namespace StrobePages {
 
 sealed class StrobePagesPass : ScriptableRenderPass
 {
@@ -21,7 +22,6 @@ sealed class StrobePagesPass : ScriptableRenderPass
 
         var desc = renderGraph.GetTextureDesc(source);
         controller.PrepareBuffers(desc.format);
-
         if (controller.PageBase == null || controller.PageFlip == null) return;
 
         var material = controller.UpdateMaterial(camera.aspect);
@@ -57,3 +57,5 @@ sealed class StrobePagesPass : ScriptableRenderPass
         resourceData.cameraColor = destination;
     }
 }
+
+} // namespace StrobePages

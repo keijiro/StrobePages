@@ -1,5 +1,6 @@
 using UnityEngine;
-using UnityEngine.Serialization;
+
+namespace StrobePages {
 
 public sealed partial class StrobePagesController
 {
@@ -28,3 +29,5 @@ public sealed partial class StrobePagesController
 
     #endregion
 }
+
+} // namespace StrobePages
