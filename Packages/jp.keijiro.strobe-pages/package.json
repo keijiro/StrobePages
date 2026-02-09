@@ -1,0 +1,16 @@
+{
+  "name": "jp.keijiro.strobe-pages",
+  "version": "1.0.0",
+  "displayName": "StrobePages",
+  "description": "Flipbook post-processing effect (renderer feature) for URP",
+  "unity": "6000.0",
+  "author": "Keijiro Takahashi",
+  "dependencies": {},
+  "changelogUrl": "https://github.com/keijiro/StrobePages/blob/master/CHANGELOG.md",
+  "documentationUrl": "https://github.com/keijiro/StrobePages",
+  "licensesUrl": "https://github.com/keijiro/StrobePages/blob/master/LICENSE",
+  "license": "Unlicense",
+  "_upm": {
+    "changelog": ""
+  }
+}

@@ -150,6 +150,12 @@
       "dependencies": {},
       "url": "https://registry.npmjs.com"
     },
+    "jp.keijiro.strobe-pages": {
+      "version": "file:jp.keijiro.strobe-pages",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {}
+    },
     "com.unity.modules.adaptiveperformance": {
       "version": "1.0.0",
       "depth": 0,
