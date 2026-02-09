@@ -34,11 +34,11 @@ float4 Frag(Varyings input) : SV_Target
         if (i >= sampleCount) break;
         float t = t0 + dt * i;
         float fall = pow(saturate(1 - t), 2.2);
-        float y1 = uv.y - fall;
-        float3 c1 = SAMPLE_TEXTURE2D_X(_BaseTex, sampler_BaseTex, float2(uv.x, y1)).rgb;
-        float3 c2 = SAMPLE_TEXTURE2D_X(_FlipTex, sampler_FlipTex, uv).rgb;
-        float shade = lerp(1, saturate(-y1 / _ShadeWidth), saturate(_ShadeStrength * fall));
-        acc += y1 > 0 ? c1 : c2 * shade;
+        float y2 = uv.y - fall;
+        float3 c1 = SAMPLE_TEXTURE2D_X(_BaseTex, sampler_BaseTex, uv).rgb;
+        float3 c2 = SAMPLE_TEXTURE2D_X(_FlipTex, sampler_FlipTex, float2(uv.x, y2)).rgb;
+        float shade = lerp(1, saturate(-y2 / _ShadeWidth), saturate(_ShadeStrength * fall));
+        acc += y2 > 0 ? c2 : c1 * shade;
     }
 
     return float4(acc / sampleCount, 1);
