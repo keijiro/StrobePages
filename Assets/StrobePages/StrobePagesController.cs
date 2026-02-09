@@ -97,10 +97,7 @@ public sealed partial class StrobePagesController : MonoBehaviour
 
     public Material UpdateMaterial(float aspect)
     {
-        if (_material == null)
-        {
-            _material = CoreUtils.CreateEngineMaterial(Shader);
-        }
+        if (_material == null) _material = CoreUtils.CreateEngineMaterial(Shader);
 
         _material.SetTexture(ShaderIDs.BaseTex, _pageBase.rt);
         _material.SetTexture(ShaderIDs.FlipTex, _pageFlip.rt);

@@ -22,10 +22,6 @@ sealed class StrobePagesPass : ScriptableRenderPass
 
         var desc = renderGraph.GetTextureDesc(source);
         controller.PrepareBuffers(desc.format);
-        if (controller.PageBase == null || controller.PageFlip == null) return;
-
-        var material = controller.UpdateMaterial(camera.aspect);
-        if (material == null) return;
 
         var initTarget = controller.ConsumeInitTarget();
         if (initTarget != null)
@@ -48,13 +44,15 @@ sealed class StrobePagesPass : ScriptableRenderPass
         desc.name = "_StrobePagesColor";
         desc.clearBuffer = false;
         desc.depthBufferBits = 0;
-        var destination = renderGraph.CreateTexture(desc);
+        var dest = renderGraph.CreateTexture(desc);
 
-        var param2 = new RenderGraphUtils.
-          BlitMaterialParameters(source, destination, material, 0);
-        renderGraph.AddBlitPass(param2, passName: "StrobePages");
+        {
+            var mat = controller.UpdateMaterial(camera.aspect);
+            var param = new RenderGraphUtils.BlitMaterialParameters(source, dest, mat, 0);
+            renderGraph.AddBlitPass(param, passName: "StrobePages");
+        }
 
-        resourceData.cameraColor = destination;
+        resourceData.cameraColor = dest;
     }
 }
 
