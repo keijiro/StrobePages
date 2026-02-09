@@ -12,8 +12,8 @@ public sealed partial class StrobePagesController
     [field:SerializeField, Range(1, 10)]
     public float PageStiffness { get; set; } = 2;
 
-    [field:SerializeField, Range(0, 0.5f)]
-    public float MotionBlur { get; set; } = 0.07f;
+    [field:SerializeField, Range(0, 1)]
+    public float MotionBlur { get; set; } = 0.2f;
 
     [field:SerializeField, Range(1, 32)]
     public int SampleCount { get; set; } = 12;
