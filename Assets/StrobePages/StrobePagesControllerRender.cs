@@ -49,6 +49,7 @@ public sealed partial class StrobePagesController
         _material.SetFloat(ShaderIDs.ShadeWidth, Mathf.Max(0.0001f, ShadeWidth));
         _material.SetFloat(ShaderIDs.ShadeStrength, Mathf.Max(0, ShadeStrength));
         _material.SetFloat(ShaderIDs.Stiffness, Mathf.Max(1, PageStiffness));
+        _material.SetFloat(ShaderIDs.Opacity, Mathf.Clamp01(Opacity));
 
         return _material;
     }

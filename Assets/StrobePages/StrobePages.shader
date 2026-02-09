@@ -16,6 +16,7 @@ int _SampleCount;
 float _ShadeWidth;
 float _ShadeStrength;
 float _Stiffness;
+float _Opacity;
 
 static const int MaxSamples = 24;
 
@@ -42,7 +43,9 @@ float4 Frag(Varyings input) : SV_Target
         acc += y2 > 0 ? c2 : c1 * shade;
     }
 
-    return float4(acc / sampleCount, 1);
+    float3 pageColor = acc / sampleCount;
+    float3 srcColor = SAMPLE_TEXTURE2D_X(_BlitTexture, sampler_LinearClamp, uv).rgb;
+    return float4(lerp(srcColor, pageColor, _Opacity), 1);
 }
 
 ENDHLSL

@@ -12,6 +12,7 @@ static class ShaderPropertyIDs
     public static readonly int ShadeWidth = Shader.PropertyToID("_ShadeWidth");
     public static readonly int ShadeStrength = Shader.PropertyToID("_ShadeStrength");
     public static readonly int Stiffness = Shader.PropertyToID("_Stiffness");
+    public static readonly int Opacity = Shader.PropertyToID("_Opacity");
 }
 
 } // namespace StrobePages
