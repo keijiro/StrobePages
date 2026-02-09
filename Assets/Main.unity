@@ -753,7 +753,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StrobePagesController
   <PageInterval>k__BackingField: 0.1
-  <EaseOutPower>k__BackingField: 1
+  <PageStiffness>k__BackingField: 2
   <MotionBlur>k__BackingField: 0.132
   <SampleCount>k__BackingField: 12
   <ShadeWidth>k__BackingField: 0.3
