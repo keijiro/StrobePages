@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Rendering;
 
 namespace StrobePages {
 
@@ -15,12 +14,16 @@ public sealed partial class StrobePagesController : MonoBehaviour
     void Update()
     {
         _phase += Time.deltaTime / PageInterval;
-        CaptureThisFrame = (_phase >= 1);
 
-        if (CaptureThisFrame)
+        if (_phase >= 1)
         {
             _phase -= (int)_phase;
             (_pageBase, _pageFlip) = (_pageFlip, _pageBase);
+            CaptureTarget = _pageFlip;
+        }
+        else
+        {
+            CaptureTarget = null;
         }
     }
 }

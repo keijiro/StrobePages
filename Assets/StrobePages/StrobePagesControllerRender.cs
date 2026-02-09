@@ -17,9 +17,7 @@ public sealed partial class StrobePagesController
     bool _needsInit = true;
     float _phase;
 
-    public bool CaptureThisFrame { get; private set; }
-
-    public RTHandle CaptureTarget => CaptureThisFrame ? _pageFlip : null;
+    public RTHandle CaptureTarget { get; private set; }
 
     public bool PrepareBuffers(GraphicsFormat format)
     {
@@ -34,7 +32,9 @@ public sealed partial class StrobePagesController
 
         _bufferFormat = format;
 
-        ResetState();
+        _needsInit = true;
+        _phase = 0;
+
         return true;
     }
 
@@ -45,12 +45,6 @@ public sealed partial class StrobePagesController
         _pageFlip?.Release();
         _pageBase = null;
         _pageFlip = null;
-    }
-
-    public void ResetState()
-    {
-        _needsInit = true;
-        _phase = 0;
     }
 
     public RTHandle ConsumeInitTarget()
