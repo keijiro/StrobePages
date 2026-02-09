@@ -5,12 +5,10 @@
   "description": "Flipbook post-processing effect (renderer feature) for URP",
   "unity": "6000.0",
   "author": "Keijiro Takahashi",
-  "dependencies": {},
+  "dependencies": { },
   "changelogUrl": "https://github.com/keijiro/StrobePages/blob/master/CHANGELOG.md",
   "documentationUrl": "https://github.com/keijiro/StrobePages",
   "licensesUrl": "https://github.com/keijiro/StrobePages/blob/master/LICENSE",
   "license": "Unlicense",
-  "_upm": {
-    "changelog": ""
-  }
+  "_upm": { "changelog": "" }
 }
