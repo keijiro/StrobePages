@@ -43,11 +43,8 @@ public sealed partial class StrobePagesController : MonoBehaviour
             CaptureThisFrame = false;
         }
 
-        var eased = 1 - Mathf.Pow(1 - _phase, PageStiffness);
-        var ddt = PageStiffness * Mathf.Pow(1 - _phase, PageStiffness - 1);
-
-        Progress = (float)eased;
-        Blur = MotionBlur * (float)ddt;
+        Progress = _phase;
+        Blur = MotionBlur;
     }
 
     #endregion
@@ -109,6 +106,7 @@ public sealed partial class StrobePagesController : MonoBehaviour
         _material.SetInt(ShaderIDs.SampleCount, Mathf.Clamp(SampleCount, 1, 32));
         _material.SetFloat(ShaderIDs.ShadeWidth, Mathf.Max(0.0001f, ShadeWidth));
         _material.SetFloat(ShaderIDs.ShadeStrength, Mathf.Max(0, ShadeStrength));
+        _material.SetFloat(ShaderIDs.Stiffness, Mathf.Max(1, PageStiffness));
 
         return _material;
     }

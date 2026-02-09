@@ -15,6 +15,7 @@ float _Blur;
 int _SampleCount;
 float _ShadeWidth;
 float _ShadeStrength;
+float _Stiffness;
 
 static const int MaxSamples = 24;
 
@@ -33,7 +34,7 @@ float4 Frag(Varyings input) : SV_Target
     {
         if (i >= sampleCount) break;
         float t = t0 + dt * i;
-        float fall = pow(saturate(1 - t), 2.2);
+        float fall = pow(saturate(1 - t), _Stiffness);
         float y2 = uv.y - fall;
         float3 c1 = SAMPLE_TEXTURE2D_X(_BaseTex, sampler_BaseTex, uv).rgb;
         float3 c2 = SAMPLE_TEXTURE2D_X(_FlipTex, sampler_FlipTex, float2(uv.x, y2)).rgb;

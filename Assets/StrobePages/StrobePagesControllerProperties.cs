@@ -6,10 +6,10 @@ public sealed partial class StrobePagesController
 {
     #region Public properties
 
-    [field:SerializeField, Range(0.02f, 0.5f)]
+    [field:SerializeField, Range(0.01f, 0.5f)]
     public float PageInterval { get; set; } = 0.1f;
 
-    [field:SerializeField, Range(1, 6)]
+    [field:SerializeField, Range(1, 10)]
     public float PageStiffness { get; set; } = 2;
 
     [field:SerializeField, Range(0, 0.5f)]
