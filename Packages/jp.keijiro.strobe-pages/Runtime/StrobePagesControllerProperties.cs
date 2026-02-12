@@ -15,9 +15,6 @@ public sealed partial class StrobePagesController
     [field:SerializeField, Range(0, 1)]
     public float MotionBlur { get; set; } = 0.2f;
 
-    [field:SerializeField, Range(0, 1)]
-    public float Opacity { get; set; } = 1;
-
     [field:SerializeField, Range(1, 24)]
     public int SampleCount { get; set; } = 12;
 
@@ -26,6 +23,9 @@ public sealed partial class StrobePagesController
 
     [field:SerializeField, Range(0, 8)]
     public float ShadeStrength { get; set; } = 4;
+
+    [field:SerializeField, Range(0, 1)]
+    public float Opacity { get; set; } = 1;
 
     #endregion
 }
