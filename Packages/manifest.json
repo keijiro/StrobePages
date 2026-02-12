@@ -1,6 +1,8 @@
 {
   "dependencies": {
+    "com.unity.visualeffectgraph": "17.3.0",
     "jp.keijiro.cmu-mocap": "1.0.1",
+    "jp.keijiro.duotone": "2.3.0",
     "jp.keijiro.klak.motion": "1.1.1",
     "jp.keijiro.klutter-tools": "2.6.0",
     "jp.keijiro.neolowman": "1.0.1",
