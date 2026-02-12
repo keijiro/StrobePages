@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: StrobePagesRendererFeature
   m_EditorClassIdentifier: Assembly-CSharp::StrobePagesRendererFeature
   m_Active: 1
+  _passEvent: 550
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
