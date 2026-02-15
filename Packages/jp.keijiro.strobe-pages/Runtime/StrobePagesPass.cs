@@ -32,7 +32,7 @@ sealed class StrobePagesPass : ScriptableRenderPass
             renderGraph.AddBlitPass(param, passName: "StrobePages (Init)");
         }
 
-        var captureTarget = controller.CaptureTarget;
+        var captureTarget = controller.ConsumeCaptureTarget();
         if (captureTarget != null)
         {
             var capture = renderGraph.ImportTexture(captureTarget);

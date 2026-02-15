@@ -4,14 +4,15 @@ namespace StrobePages {
 
 [ExecuteInEditMode]
 [RequireComponent(typeof(Camera))]
-[AddComponentMenu("StrobePages")]
+[AddComponentMenu("StrobePages/StrobePages Controller")]
 public sealed partial class StrobePagesController : MonoBehaviour
 {
     public void StartPageTurn()
     {
-        if (AutoPageTurn) return;
-        if (_isPageTurnActive) return;
-        _isPageTurnActive = true;
+        if (_phase < 1) return;
+        _phase -= (int)_phase;
+        (_pageBase, _pageFlip) = (_pageFlip, _pageBase);
+        _flags.capture = true;
     }
 
     void OnDestroy() => ReleaseResources();
@@ -20,28 +21,12 @@ public sealed partial class StrobePagesController : MonoBehaviour
 
     void Update()
     {
-        if (AutoPageTurn) _isPageTurnActive = true;
-
-        if (!_isPageTurnActive)
-        {
-            if (_phase < 0) _phase = 0;
-            CaptureTarget = null;
-            return;
-        }
-
         _phase += Time.deltaTime / PageInterval;
 
-        if (_phase >= 1)
-        {
-            _phase -= (int)_phase;
-            (_pageBase, _pageFlip) = (_pageFlip, _pageBase);
-            CaptureTarget = _pageFlip;
-            if (!AutoPageTurn) _isPageTurnActive = false;
-        }
+        if (AutoPageTurn)
+            StartPageTurn();
         else
-        {
-            CaptureTarget = null;
-        }
+            _phase = Mathf.Min(1, _phase);
     }
 }
 
