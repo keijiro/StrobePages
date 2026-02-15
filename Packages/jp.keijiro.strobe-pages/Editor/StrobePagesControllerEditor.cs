@@ -1,5 +1,6 @@
 using UnityEditor;
 using UnityEditor.UIElements;
+using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace StrobePages {
@@ -10,6 +11,7 @@ sealed class StrobePagesControllerEditor : Editor
     public override VisualElement CreateInspectorGUI()
     {
         var root = new VisualElement();
+        AddProperty(root, nameof(StrobePagesController.AutoPageTurn));
         AddProperty(root, nameof(StrobePagesController.PageInterval));
         AddProperty(root, nameof(StrobePagesController.PageStiffness));
         AddProperty(root, nameof(StrobePagesController.MotionBlur));
@@ -17,7 +19,19 @@ sealed class StrobePagesControllerEditor : Editor
         AddProperty(root, nameof(StrobePagesController.ShadeWidth));
         AddProperty(root, nameof(StrobePagesController.ShadeStrength));
         AddProperty(root, nameof(StrobePagesController.Opacity));
+        var button = new Button(StartPageTurn) { text = "Start Page Turn" };
+        root.Add(button);
         return root;
+    }
+
+    void StartPageTurn()
+    {
+        foreach (var targetObject in targets)
+            if (targetObject is StrobePagesController controller)
+            {
+                controller.StartPageTurn();
+                if (!Application.isPlaying) EditorUtility.SetDirty(controller);
+            }
     }
 
     void AddProperty(VisualElement root, string name)

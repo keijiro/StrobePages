@@ -13,6 +13,7 @@ public sealed partial class StrobePagesController
     RTHandle _pageBase;
     RTHandle _pageFlip;
     float _phase;
+    bool _isPageTurnActive;
 
     void ReleaseResources()
     {
@@ -21,6 +22,7 @@ public sealed partial class StrobePagesController
         _pageFlip?.Release();
         _pageBase = null;
         _pageFlip = null;
+        _isPageTurnActive = false;
     }
 
     public void PrepareBuffers(GraphicsFormat format)
@@ -30,12 +32,16 @@ public sealed partial class StrobePagesController
         _pageFlip = RTHandles.Alloc(Vector3.one, format, name: "_StrobePages_Flip");
         CaptureTarget = _pageFlip;
         _phase = -1e-5f;
+        _isPageTurnActive = AutoPageTurn;
     }
 
     public RTHandle ConsumeInitTarget()
       => _phase < 0 ? _pageBase : null;
 
     public RTHandle CaptureTarget { get; private set; }
+
+    public RTHandle StaticSource
+      => !_isPageTurnActive ? _pageBase : null;
 
     public Material UpdateMaterial(float aspect)
     {
