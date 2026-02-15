@@ -1,0 +1,11 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <uie:PropertyField name="AutoPageTurn" binding-path="&lt;AutoPageTurn&gt;k__BackingField"/>
+    <uie:PropertyField name="PageInterval" binding-path="&lt;PageInterval&gt;k__BackingField"/>
+    <uie:PropertyField name="PageStiffness" binding-path="&lt;PageStiffness&gt;k__BackingField"/>
+    <uie:PropertyField name="MotionBlur" binding-path="&lt;MotionBlur&gt;k__BackingField"/>
+    <uie:PropertyField name="SampleCount" binding-path="&lt;SampleCount&gt;k__BackingField"/>
+    <uie:PropertyField name="ShadeWidth" binding-path="&lt;ShadeWidth&gt;k__BackingField"/>
+    <uie:PropertyField name="ShadeStrength" binding-path="&lt;ShadeStrength&gt;k__BackingField"/>
+    <uie:PropertyField name="Opacity" binding-path="&lt;Opacity&gt;k__BackingField"/>
+    <ui:Button text="Start Page Turn" name="page-turn-button"/>
+</ui:UXML>

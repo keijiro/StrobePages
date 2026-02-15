@@ -6,6 +6,9 @@ public sealed partial class StrobePagesController
 {
     #region Public properties
 
+    [field:SerializeField]
+    public bool AutoPageTurn { get; set; } = true;
+
     [field:SerializeField, Range(0.01f, 0.5f)]
     public float PageInterval { get; set; } = 0.1f;
 

@@ -32,7 +32,7 @@ sealed class StrobePagesPass : ScriptableRenderPass
             renderGraph.AddBlitPass(param, passName: "StrobePages (Init)");
         }
 
-        var captureTarget = controller.CaptureTarget;
+        var captureTarget = controller.ConsumeCaptureTarget();
         if (captureTarget != null)
         {
             var capture = renderGraph.ImportTexture(captureTarget);
@@ -46,6 +46,15 @@ sealed class StrobePagesPass : ScriptableRenderPass
         desc.depthBufferBits = 0;
         var dest = renderGraph.CreateTexture(desc);
 
+        var staticSource = controller.StaticSource;
+        if (staticSource != null)
+        {
+            var page = renderGraph.ImportTexture(staticSource);
+            var mat = Blitter.GetBlitMaterial(TextureDimension.Tex2D);
+            var param = new RenderGraphUtils.BlitMaterialParameters(page, dest, mat, 0);
+            renderGraph.AddBlitPass(param, passName: "StrobePages (Static)");
+        }
+        else
         {
             var mat = controller.UpdateMaterial(camera.aspect);
             var param = new RenderGraphUtils.BlitMaterialParameters(source, dest, mat, 0);
