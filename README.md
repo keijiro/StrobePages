@@ -29,6 +29,9 @@ registry to your project.
 
 <img width="299" height="190" alt="Inspector" src="https://github.com/user-attachments/assets/1aa1a47b-f5bb-4fef-a5f2-11d7bb680988" />
 
+**Auto Page Turn** runs page turns continuously. Disable it to hold the current
+page and trigger a single turn manually via the `StartPageTurn()` method.
+
 **Page Interval** controls how often a new page is captured. Shorter values
 flip more frequently.
 
