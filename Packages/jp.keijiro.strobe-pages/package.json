@@ -1,6 +1,6 @@
 {
   "name": "jp.keijiro.strobe-pages",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "displayName": "StrobePages",
   "description": "Flipbook post-processing effect (renderer feature) for URP",
   "unity": "6000.0",
@@ -10,5 +10,5 @@
   "documentationUrl": "https://github.com/keijiro/StrobePages",
   "licensesUrl": "https://github.com/keijiro/StrobePages/blob/master/LICENSE",
   "license": "Unlicense",
-  "_upm": { "changelog": "<b>Added</b><br>- Added a Pass Event property to `StrobePagesRendererFeature` to control the render pass injection point.<br><br><b>Changed</b><br>- Added a URP package dependency (`com.unity.render-pipelines.universal` 17.0.0) to `package.json`.<br>- Reordered `StrobePagesController` properties." }
+  "_upm": { "changelog": "<b>Added</b><br>- Added an `AutoPageTurn` property to enable/disable continuous page turning.<br>- Added a custom UI Toolkit inspector for `StrobePagesController` with a manual page-turn button." }
 }
