@@ -22,9 +22,7 @@ sealed class StrobePagesControllerEditor : Editor
 
         ui.TrackPropertyValue(flag, _ => UpdateButtonVisibility(button, flag));
 
-        var root = new VisualElement();
-        root.Add(ui);
-        return root;
+        return ui;
     }
 
     void UpdateButtonVisibility(Button button, SerializedProperty flag)
